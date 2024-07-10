@@ -7,7 +7,7 @@ interface Props {
 const { title, id } = Astro.props;
 ---
 
-<div class="min-h-full max-w-[900px] snap-start pt-16" id={id} data-section>
+<div class="max-w-[900px] pt-16" id={id} data-section>
   <h3 class="text-2xl font-bold">{title}</h3>
 
   <slot />

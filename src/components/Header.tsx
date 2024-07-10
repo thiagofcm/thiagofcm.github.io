@@ -39,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header class="fixed inset-x-0 top-4 z-10 w-full lg:sticky lg:top-0">
+    <header class="fixed inset-x-0 top-4 z-10 w-full lg:sticky lg:max-w-[900px]">
       <nav class="flex w-full justify-center">
         <ul class="flex overflow-hidden rounded-full border-2 border-neutral-300 bg-neutral-100 px-3 text-sm font-semibold dark:border-neutral-700 dark:bg-neutral-900">
           <li>
