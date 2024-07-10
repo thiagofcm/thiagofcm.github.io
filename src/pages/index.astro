@@ -64,10 +64,18 @@ import Layout from "../layouts/Layout.astro";
     </p>
 
     <div class="mt-12 grid grid-cols-2 gap-8 px-1 md:grid-cols-4">
-      <img class="aspect-square h-full rotate-2 rounded-xl object-cover" src="banner1.jpg" alt="" />
-      <img class="aspect-square h-full -rotate-2 rounded-xl object-cover" src="banner2.jpeg" alt="" />
-      <img class="aspect-square h-full rotate-2 rounded-xl object-cover" src="banner3.jpg" alt="" />
-      <img class="aspect-square h-full -rotate-2 rounded-xl object-cover" src="banner4.jpeg" alt="" />
+      <div class="aspect-h-1 aspect-w-1">
+        <img class="h-full w-full rotate-2 rounded-xl object-cover object-center" src="banner1.jpg" alt="" />
+      </div>
+      <div class="aspect-h-1 aspect-w-1">
+        <img class="h-full -rotate-2 rounded-xl object-cover" src="banner2.jpeg" alt="" />
+      </div>
+      <div class="aspect-h-1 aspect-w-1">
+        <img class="h-full rotate-2 rounded-xl object-cover" src="banner3.jpg" alt="" />
+      </div>
+      <div class="aspect-h-1 aspect-w-1">
+        <img class="h-full -rotate-2 rounded-xl object-cover" src="banner4.jpeg" alt="" />
+      </div>
     </div>
 
     <div class="mt-12 rounded-xl bg-neutral-200 p-6 shadow-md dark:bg-neutral-800">
@@ -136,7 +144,7 @@ import Layout from "../layouts/Layout.astro";
   <Section title="Projects" id="projects">
     <div class="mt-8">
       <ul class="inline-flex divide-x-2 divide-purple-600 overflow-hidden rounded-xl border-2 border-purple-600 dark:divide-purple-400 dark:border-purple-400">
-        <li class="bg-purple-600 px-4 py-1 dark:bg-purple-400 text-neutral-100">All</li>
+        <li class="bg-purple-600 px-4 py-1 text-neutral-100 dark:bg-purple-400">All</li>
         <li class="px-4 py-1">Robos</li>
         <li class="px-4 py-1">Robos</li>
       </ul>
