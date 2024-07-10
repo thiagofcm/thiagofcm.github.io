@@ -1,0 +1,95 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Thiago Fernando Cuevas Mestanza</title>
+  </head>
+  <body class="h-screen w-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 lg:flex lg:overflow-hidden">
+    <aside class="left-auto flex-grow bg-neutral-200 dark:bg-neutral-800 lg:h-full lg:basis-[384px]">
+      <Sidebar />
+    </aside>
+
+    <main
+      id="main"
+      class="relative flex flex-grow flex-col bg-neutral-100 px-4 pb-1 dark:bg-neutral-900 lg:h-full lg:basis-[900px] lg:snap-y lg:snap-mandatory lg:overflow-y-auto lg:px-12 lg:pb-12 lg:pt-4"
+    >
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+    document.querySelector("#darkModeButton").innerHTML =
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-purple-600">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+          />
+        </svg>`;
+  } else {
+    document.documentElement.classList.add("dark");
+    document.querySelector("#darkModeButton").innerHTML =
+      `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+          />
+        </svg>`;
+  }
+
+  window.localStorage.setItem("theme", theme);
+
+  const toggleLinks = (main) => {
+    const sections = document.querySelectorAll("[data-section]");
+    const links = document.querySelectorAll("header nav ul li a");
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if ((main ? main.scrollTop : window.scrollY) >= sectionTop - 60) {
+        current = section.getAttribute("id") + "-link";
+      }
+    });
+
+    links.forEach((link) => {
+      link.classList.remove("border-b-2", "border-purple-600", "text-purple-600", "dark:border-purple-400", "dark:text-purple-400");
+      if (link.getAttribute("id") === current) {
+        link.classList.add("border-b-2", "border-purple-600", "text-purple-600", "dark:border-purple-400", "dark:text-purple-400");
+      }
+    });
+  };
+
+  toggleLinks();
+  toggleLinks(document.querySelector("#main"));
+
+  window.addEventListener("scroll", () => {
+    toggleLinks();
+  });
+
+  document.querySelector("#main").addEventListener("scroll", () => {
+    toggleLinks(document.querySelector("#main"));
+  });
+</script>
