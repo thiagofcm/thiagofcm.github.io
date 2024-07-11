@@ -1,32 +1,19 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-
 import Header from "../components/Header.tsx";
 import ExperienceCard from "../components/ExperienceCard.astro";
 import Section from "../components/Section.astro";
 import Projects from "../components/Projects.tsx";
 
-const projects: Project[] = [
-  {
-    image: "robo.jpg",
-    title: "Robo wisey",
-    body: "A hierarchical framework for bipedal locomotion that combines an RL-based high-level (HL) planner policy for the online generation.",
-    href: "github.com",
-    category: "Robots",
-  },
-  {
-    image: "eletronico.jpg",
-    title: "Eletronics",
-    body: "A novel model-free reinforcement learning (RL) framework to design cascade feedback control policies for 3D bipedal locomotion.",
-    href: "github.com",
-    category: "Eletronics",
-  },
-];
+const projects = await getCollection("projects");
+
+console.log(projects);
 ---
 
 <script is:inline></script>
 
-<Layout>
+<Layout sidebarPaddingTop>
   <Header client:load />
 
   <Section title="About me" id="about-me">
@@ -73,7 +60,7 @@ const projects: Project[] = [
               <p class="font-semibold">Bachelor of Science • Control and Automation Engineering</p>
               <div class="text-purple-600 dark:text-purple-400">Federal University of Uberlândia – UFU</div>
             </div>
-            <div class="text-xs text-neutral-600 dark:text-neutral-400">Aug 2018 - May 2024</div>
+            <div class="text-sm text-neutral-600 dark:text-neutral-400 md:text-right">Aug 2018 - May 2024</div>
           </div>
         </li>
         <li class="flex flex-col border-t-2 border-neutral-300 py-4 dark:border-neutral-700">
@@ -82,7 +69,7 @@ const projects: Project[] = [
               <p class="font-semibold">Technical course in Computer Graphics</p>
               <div class="text-purple-600 dark:text-purple-400">Federal Insititute of Triangulo Mineiro – IFTM</div>
             </div>
-            <div class="text-xs text-neutral-600 dark:text-neutral-400">Mar 2015 – Dec 2017</div>
+            <div class="text-sm text-neutral-600 dark:text-neutral-400 md:text-right">Mar 2015 – Dec 2017</div>
           </div>
         </li>
       </ul>
@@ -115,6 +102,10 @@ const projects: Project[] = [
   </Section>
 
   <Section title="Projects" id="projects">
+    <Projects client:load projects={projects} />
+  </Section>
+
+  <Section title="STEM" id="projects">
     <Projects client:load projects={projects} />
   </Section>
 </Layout>

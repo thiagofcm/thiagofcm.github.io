@@ -3,10 +3,14 @@ import Github from "../icons/github.html";
 import Linkedin from "../icons/linkedin.html";
 import Youtube from "../icons/youtube.html";
 import Mail from "../icons/mail.html";
+
+const { sidebarPaddingTop } = Astro.props;
 ---
 
-<div class="flex px-4 pb-8 pt-24 lg:ml-auto lg:h-full lg:w-96 lg:flex-col lg:border-r-2 lg:border-neutral-300 lg:px-12 lg:pb-12 lg:dark:border-neutral-700">
-  <img src="foto2.jpg" alt="" class="size-20 shrink-0 rounded-full border-4 border-neutral-300 object-cover dark:border-neutral-700 sm:size-32 lg:size-40" />
+<div
+  class={`flex px-4 pb-8 lg:ml-auto lg:h-full lg:w-96 lg:flex-col border-b-2 lg:border-r-2 border-neutral-300 lg:px-12 lg:pb-12 dark:border-neutral-700 ${sidebarPaddingTop ? "pt-24" : "pt-8 lg:pt-24"}`}
+>
+  <img src="/foto2.jpg" alt="" class="size-20 shrink-0 rounded-full border-4 border-neutral-300 object-cover dark:border-neutral-700 sm:size-32 lg:size-40" />
 
   <div class="ml-4 flex h-full flex-col lg:ml-0">
     <div class="flex-grow">

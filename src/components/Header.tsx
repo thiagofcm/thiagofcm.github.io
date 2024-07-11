@@ -4,26 +4,7 @@ const Header = () => {
   const [theme, setTheme] = createSignal("");
 
   onMount(() => {
-    const initalTheme = (() => {
-      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-        return localStorage.getItem("theme");
-      }
-
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-
-      return "light";
-    })();
-
-    if (initalTheme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-
-    window.localStorage.setItem("theme", initalTheme || "light");
-    setTheme(initalTheme || "light");
+    setTheme(localStorage.theme || "light");
   });
 
   const handleThemeClick = () => {

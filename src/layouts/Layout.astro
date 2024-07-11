@@ -1,5 +1,7 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
+
+const { sidebarPaddingTop } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,12 +17,12 @@ import Sidebar from "../components/Sidebar.astro";
   </head>
   <body class="h-screen w-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 lg:flex lg:overflow-hidden">
     <aside class="left-auto flex-grow bg-neutral-200 dark:bg-neutral-800 lg:h-full lg:basis-[384px]">
-      <Sidebar />
+      <Sidebar sidebarPaddingTop={sidebarPaddingTop} />
     </aside>
 
     <main
       id="main"
-      class="relative flex flex-grow flex-col bg-neutral-100 px-4 pb-4 dark:bg-neutral-900 lg:h-full lg:basis-[900px] lg:overflow-y-auto lg:px-12 lg:pb-16"
+      class="relative flex flex-grow flex-col bg-neutral-100 px-4 pb-16 dark:bg-neutral-900 lg:h-full lg:basis-[900px] lg:overflow-y-auto lg:px-12"
     >
       <slot />
     </main>
@@ -28,6 +30,26 @@ import Sidebar from "../components/Sidebar.astro";
 </html>
 
 <script is:inline>
+  const initalTheme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  })();
+
+  if (initalTheme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+
+  window.localStorage.setItem("theme", initalTheme || "light");
+
   const toggleLinks = (main) => {
     const sections = document.querySelectorAll("[data-section]");
     const links = document.querySelectorAll("header nav ul li a");
