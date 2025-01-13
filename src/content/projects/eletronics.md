@@ -1,5 +1,5 @@
 ---
-title: "Eletronic"
+title: "Eletronics"
 summary: "The results demonstrate that the learned latent variables are disentangled and directly correspond to different gaits or speeds, such as moving forward, backward, or walking in place."
 image: "/eletronico.jpg"
 category: "Eletronics"
