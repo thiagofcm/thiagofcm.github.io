@@ -1,7 +1,7 @@
 ---
 title: "Wisey I: Personal Assistant Robot"
 summary: "This paper presents a novel framework for learning robust bipedal walking by combining a data-driven state representation with a Reinforcement Learning (RL) based locomotion policy."
-image: "/Wisey/wisey-oblique.jpg"
+image: "/Wisey/wisey-oblique.webp"
 category: "Robotics"
 ---
 
@@ -9,7 +9,9 @@ category: "Robotics"
 
 **Project Overview:** The global phenomenon of population aging, responsible for the significant increase in the elderly population in Brazil, demands the search for ways to address the challenges affecting the quality of life of the elderly. Among the characteristics of this population segment, the incidence of motor disabilities and lack of companionship stand out. In the face of this reality, solutions that utilize assistive robotics (AR), a research area exploring the use of robots to support human users in elderly care, become increasingly relevant. In this context, this work proposes the development of a personal assistant robot aimed at providing support for the care of this population segment within the home environment. The robot is designed to perform specific tasks such as following a user, fetching objects, and answering questions through voice commands, offering interactive companionship, as well as alleviating physical strain and preventing potential falls or motor injuries. To achieve this, the robot features not only electromechanical resources but also applications of artificial intelligence, machine learning, and computer vision. The obtained results demonstrated a satisfactory interaction between the robot and the environment, highlighting the system’s ability to track users, detect objects, and provide coherent responses to voice commands. Despite physical and structural challenges, the collected results still suggest that the developed robot could offer a supportive alternative to the challenges faced by this population segment in the home environment.
 
-miniatura do video no yt
+![Demo](/Wisey/video-screen.jpg)
+
+**Demonstration Video on**: https://youtu.be/cWnuLTotcqo?si=mWqZdpgAJhJ9Zi48
 
 ## Hardware Design
 
@@ -32,23 +34,26 @@ The implemented software can be divided into three individual firmwares embedded
 - **STM32 (ARM M4) MCU Embedded Firmware:** Through timers, the STM board controls the activation of motors and sensors. Motor control is carried out using coordinated PWM signals applied to the motors based on the target location data received from the Maixduino via UART.
 
 The diagram below illustrates the operation and interaction between the firmwares and the peripherals surrounding each of the controllers.
-imagem: Firmwares-Transp-just-diagram
+
+![Software Diagram](/Wisey/converted_image.webp)
 
 ## Mechanical Design
 
 The mechanical and structural design of the robot primarily aimed for compatibility between the system's functionalities and the physical aspects of the chassis. Weighing approximately 1kg, the SN2500 chassis, illustrated in Figure below, features two plastic tracks, each coupled to a motor. Additionally, the chassis includes mounting points that allowed for its integration with the main structure.
 
-![](/Wisey/tanque-estrutura.png)
+![SN2500](/Wisey/tanque-estrutura.png)
 
 All other parts located above the chassis were manufactured using 3D printing and designed using the Fusion 360 modeling software.
 
-imagem: oblique-v2
-For more information about the structure, refer to the section ..........
+![3D](/Wisey/oblique-v2.webp)
+
+For more information about the 3D structure, refer to the section 3D Models
 
 ## How this robot works?
 
 The system's operation is divided into three distinct modes: Follow Mode, Finder Mode, and Conversation Mode. Each of these modes requires specific voice commands for activation and deactivation. Before any command is issued, the system must detect the wake-word, which is the word defined by the developer as the key to activate voice command recognition. In this project, the wake-word **"robot"** was used to signal the beginning of any request made to the robot. Table below illustrates a table of all the words defined as keys for the system's decision-making process.
 
+![KeyWords](/Wisey/oblique-v2.webp)
 imagem: keywords-english
 
 - **Follow Mode**
@@ -57,22 +62,25 @@ imagem: keywords-english
 
   As shown in Figure below, in the case where more than one face is detected, the algorithm is designed to follow the face with the largest bounding box, usually the one closest to the robot. Similarly to the Finder Mode operation, after detecting the desired target, the algorithm calculates the area and the coordinates of the center point of the marked rectangle, highlighting it with a red dot, which is used as a reference for the servo motor and track motor movements.
 
-  ![](/Wisey/face-target.jpg)
+  ![Face-Target](/Wisey/face-target.jpg)
 
   The robot follows the target face until the bounding box reaches a pre-established area value. This area value indicates that the robot is at its proximity limit, and the motors stop rotating. Depending on the user's movements, the robot adjusts its position to remain within this distance limit. Figure below illustrates the operation mode in action.
 
-  imagem: follow mode
+  ![Follow-Mode](/Wisey/folllow-mode.jpg)
 
 - **Finder Mode**
 
   Finder Mode is the robot's operational mode in which it searches its surroundings for objects requested by the user. Upon finding a specific object, it moves toward it until sensors indicate that the gripping distance has been reached. At this point, the robot stops its trajectory and activates its claws to capture the object. Once the object is captured, it searches for a face to whom it will deliver the object.
 
-  The trigger for activating Finder Mode is the presence of the word "bring" in the voice command issued by the user after the wake-word is detected. Specifically, in this mode, a second keyword is required for the system to understand which object the user desires. The adopted strategy involves not only checking for the word "bring" but also analyzing the presence of the names of objects that the AI model embedded in the Maixduino has been trained to identify. The list of identifiable objects includes items such as airplane, bicycle, bird, boat, bottle, bus, car, cat, chair, cow, dining table, dog, horse, motorcycle, person, potted plant, sheep, sofa, train, and TV monitor. If the name of the desired object spoken by the user is among the objects identifiable by the model, the Raspberry Pi sends the message "bring-" followed by the requested object via UART to the Maixduino. If the desired object is not among the objects identifiable by the model, the robot responds with the message: "Sorry, I am not capable of recognizing this object." Figure below illustrates the operation mode in action as it approaches the requested object: car.
+  The trigger for activating Finder Mode is the presence of the word "bring" in the voice command issued by the user after the wake-word is detected. Specifically, in this mode, a second keyword is required for the system to understand which object the user desires. The adopted strategy involves not only checking for the word "bring" but also analyzing the presence of the names of objects that the AI model embedded in the Maixduino has been trained to identify. The list of identifiable objects includes items such as airplane, bicycle, bird, boat, bottle, bus, car, cat, chair, cow, dining table, dog, horse, motorcycle, person, potted plant, sheep, sofa, train, and TV monitor. If the name of the desired object spoken by the user is among the objects identifiable by the model, the Raspberry Pi sends the message "bring-" followed by the requested object via UART to the Maixduino. If the desired object is not among the objects identifiable by the model, the robot responds with the message: "Sorry, I am not capable of recognizing this object."
 
-  imagem: finder-mode-right
+  Figure below illustrates the operation mode in action as it approaches the requested object: car.
+
+  ![Finder-Mode-Right](/Wisey/finder-mode-right.jpg)
 
   As soon as the command is received by the Sipeed microcontroller, the object detection model is activated, and the LCD screen displays the image captured by the camera. Using the Maixduino kit's features, the system can identify objects and draw rectangles around them. A green rectangle is applied around the desired object, and as shown in the Figure below. If other objects are present besides the requested one, the microcontroller draws a red rectangular outline around them.
-  imagem: car-and-bottle-target
+
+  ![Car-and-Bottle](/Wisey/car-and-bottle-target.jpg)
 
   Additionally, the algorithm calculates the area and the coordinates of the center point of the marked green rectangle, marking its center with a red dot. In this way, the robot follows the central point until the sensor detects an object at a distance of 20 cm, which is established as the limit. At this point, the buzzer is activated, and the motors stop rotating. Depending on the object detected in front, the robot makes different decisions, such as activating the claw motor if it is the desired object or remaining stationary if it is an unknown object until the obstacle is removed from its path. Once the object is captured, it begins functioning similarly to Follow Mode.
 
@@ -84,4 +92,15 @@ imagem: keywords-english
 
 ## Robot Images
 
-imagens: wisey-front (2), wisey-oblique, wisey-topv2, inside1, up-pcb-and-robot, wise-button, wise-hook, hook-and-robot-back, wisey-profilecvgn
+![Wisey-Front](/Wisey/wisey-front2.jpg)
+![Wisey-Oblique](/Wisey/wisey-topv2.jpg)
+![Wisey-Oblique](/Wisey/inside1.jpg)
+![Wisey-Oblique](/Wisey/up-pcb-and-robot.png)
+![Wisey-Oblique](/Wisey/wise-button.jpeg)
+![Wisey-Oblique](/Wisey/wise-hook.jpeg)
+![Wisey-Oblique](/Wisey/hook-and-robot-back.jpg)
+![Wisey-Oblique](/Wisey/wisey-profile.jpeg) 
+
+### More info:
+**Github Code:** https://github.com/thiagofcm/Personal_Assistant_Robot_TCC
+**Reference:** https://github.com/SaralTayal123/Object-Finding-Rover/tree/master
