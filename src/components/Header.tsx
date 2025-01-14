@@ -24,17 +24,17 @@ const Header = () => {
       <nav class="flex w-full justify-center">
         <ul class="flex overflow-hidden rounded-full border-2 border-neutral-300 bg-neutral-100 px-3 text-sm font-semibold dark:border-neutral-700 dark:bg-neutral-900">
           <li>
-            <a href="#about-me" id="about-me-link" class="flex h-full px-3 py-2 hover:text-purple-600 dark:hover:text-purple-400">
+            <a href="#about-me" id="about-me-link" class="flex h-full items-center px-3 py-2 hover:text-blue-600 dark:hover:text-blue-400">
               About
             </a>
           </li>
           <li>
-            <a href="#experience" id="experience-link" class="flex h-full px-3 py-2 hover:text-purple-600 dark:hover:text-purple-400">
+            <a href="#experience" id="experience-link" class="flex h-full items-center px-3 py-2 hover:text-blue-600 dark:hover:text-blue-400">
               Experience
             </a>
           </li>
           <li>
-            <a href="#projects" id="projects-link" class="flex h-full px-3 py-2 hover:text-purple-600 dark:hover:text-purple-400">
+            <a href="#projects" id="projects-link" class="flex h-full items-center px-3 py-2 hover:text-blue-600 dark:hover:text-blue-400">
               Projects
             </a>
           </li>
@@ -48,7 +48,7 @@ const Header = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6 text-purple-600"
+                    class="size-6 text-blue-600"
                   >
                     <path
                       stroke-linecap="round"
@@ -58,7 +58,7 @@ const Header = () => {
                   </svg>
                 </Match>
                 <Match when={theme() === "dark"}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"

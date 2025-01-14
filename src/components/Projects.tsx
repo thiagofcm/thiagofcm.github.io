@@ -21,12 +21,12 @@ const Projects = ({ projects }: { projects: CollectionEntry<"projects">[] }) => 
   return (
     <>
       <div class="mt-8">
-        <ul class="inline-flex divide-x-2 divide-purple-600 overflow-hidden rounded-xl border-2 border-purple-600 dark:divide-purple-400 dark:border-purple-400">
+        <ul class="inline-flex divide-x-2 divide-blue-600 overflow-hidden rounded-xl border-2 border-blue-600 dark:divide-blue-400 dark:border-blue-400">
           <For each={categories}>
             {(category) => (
               <li>
                 <button
-                  class={`px-4 py-1 ${currentCategory() === category ? "bg-purple-600 font-medium text-neutral-100 dark:bg-purple-400" : "hover:font-medium hover:text-purple-600 dark:hover:text-purple-400"}`}
+                  class={`px-4 py-1 ${currentCategory() === category ? "bg-blue-600 font-medium text-neutral-100 dark:bg-blue-400" : "hover:font-medium hover:text-blue-600 dark:hover:text-blue-400"}`}
                   onClick={[handleFilterClick, category]}
                 >
                   {category}
@@ -48,7 +48,7 @@ const Projects = ({ projects }: { projects: CollectionEntry<"projects">[] }) => 
               <div class="flex h-full flex-col gap-2 p-4">
                 <h4 class="font-semibold">{project.data.title}</h4>
                 <p class="flex-grow text-neutral-600 dark:text-neutral-400">{project.data.summary}</p>
-                <div class="flex items-center gap-2 group-hover:text-purple-600 dark:group-hover:text-purple-400">
+                <div class="flex items-center gap-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
                     <path
                       fill-rule="evenodd"

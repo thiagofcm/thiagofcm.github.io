@@ -5,10 +5,9 @@ import Header from "../components/Header.tsx";
 import ExperienceCard from "../components/ExperienceCard.astro";
 import Section from "../components/Section.astro";
 import Projects from "../components/Projects.tsx";
+import Link from "../components/Link.astro";
 
 const projects = await getCollection("projects");
-
-console.log(projects);
 ---
 
 <script is:inline></script>
@@ -18,10 +17,10 @@ console.log(projects);
 
   <Section title="About me" id="about-me">
     <p class="mt-4 leading-loose">
-      I am a Ph.D. student in Electrical Engineering at the University of Florida, working in the Focus Lab under the guidance of Prof. Dr. Sanjeev Koppal.
-      My current research focuses on collision prediction, specifically exploring variable temporal resolution to improve prediction accuracy and effectiveness.
-      My academic interests lie in computer vision, robotics, and embedded systems, with a strong emphasis on integrating these technologies to develop innovative 
-      solutions in autonomous systems.
+      I am a Ph.D. student in Electrical Engineering at the University of Florida, working in the <Link href="https://focus.ece.ufl.edu/">Focus Lab</Link> under
+      the guidance of Prof. Dr. Sanjeev Koppal. My current research focuses on collision prediction, specifically exploring variable temporal resolution to improve
+      prediction accuracy and effectiveness. My academic interests lie in computer vision, robotics, and embedded systems, with a strong emphasis on integrating
+      these technologies to develop innovative solutions in autonomous systems.
     </p>
 
     <!-- <p class="mt-4 leading-loose">
@@ -65,16 +64,16 @@ console.log(projects);
           <div class="md:flex md:items-center md:justify-between">
             <div>
               <p class="font-semibold">PhD • Electrical and Computer Engineering</p>
-              <div class="text-purple-600 dark:text-purple-400">University of Florida – UF</div>
+              <div class="text-blue-600 dark:text-blue-400">University of Florida – UF</div>
             </div>
             <div class="text-sm text-neutral-600 dark:text-neutral-400 md:text-right">Jan 2025 - Present</div>
           </div>
         </li>
-        <li class="flex flex-col py-4">
+        <li class="flex flex-col border-t-2 border-neutral-300 py-4 dark:border-neutral-700">
           <div class="md:flex md:items-center md:justify-between">
             <div>
               <p class="font-semibold">Bachelor of Science • Control and Automation Engineering</p>
-              <div class="text-purple-600 dark:text-purple-400">Federal University of Uberlândia – UFU</div>
+              <div class="text-blue-600 dark:text-blue-400">Federal University of Uberlândia – UFU</div>
             </div>
             <div class="text-sm text-neutral-600 dark:text-neutral-400 md:text-right">Aug 2018 - May 2024</div>
           </div>
@@ -82,8 +81,8 @@ console.log(projects);
         <li class="flex flex-col border-t-2 border-neutral-300 py-4 dark:border-neutral-700">
           <div class="md:flex md:items-center md:justify-between">
             <div>
-              <p class="font-semibold">Technical course in Computer Graphics</p>
-              <div class="text-purple-600 dark:text-purple-400">Federal Insititute of Triangulo Mineiro – IFTM</div>
+              <p class="font-semibold">Technical course • Computer Graphics</p>
+              <div class="text-blue-600 dark:text-blue-400">Federal Insititute of Triangulo Mineiro – IFTM</div>
             </div>
             <div class="text-sm text-neutral-600 dark:text-neutral-400 md:text-right">Mar 2015 – Dec 2017</div>
           </div>

@@ -22,7 +22,7 @@ const { sidebarPaddingTop } = Astro.props;
 
     <main
       id="main"
-      class="relative flex flex-grow flex-col bg-neutral-100 px-4 pb-16 dark:bg-neutral-900 lg:h-full lg:basis-[900px] lg:overflow-y-auto lg:px-12"
+      class="relative flex flex-grow flex-col items-center bg-neutral-100 px-4 pb-16 dark:bg-neutral-900 lg:h-full lg:basis-[900px] lg:items-start lg:overflow-y-auto lg:px-12"
     >
       <slot />
     </main>
@@ -63,9 +63,9 @@ const { sidebarPaddingTop } = Astro.props;
     });
 
     links.forEach((link) => {
-      link.classList.remove("border-b-2", "border-purple-600", "text-purple-600", "dark:border-purple-400", "dark:text-purple-400");
+      link.classList.remove("border-b-2", "border-blue-600", "text-blue-600", "dark:border-blue-400", "dark:text-blue-400");
       if (link.getAttribute("id") === current) {
-        link.classList.add("border-b-2", "border-purple-600", "text-purple-600", "dark:border-purple-400", "dark:text-purple-400");
+        link.classList.add("border-b-2", "border-blue-600", "text-blue-600", "dark:border-blue-400", "dark:text-blue-400");
       }
     });
   };
