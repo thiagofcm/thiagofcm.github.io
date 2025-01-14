@@ -2,7 +2,7 @@ import type { CollectionEntry } from "astro:content";
 import { createSignal, For } from "solid-js";
 
 const Projects = ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
-  const categories = ["All", "Robotics", "Eletronics"];
+  const categories = ["All", "Robotics", "Electronics", "3D Design",];
 
   const [filteredProjects, setFilteredProjects] = createSignal(projects);
   const [currentCategory, setCurrentCategory] = createSignal("All");

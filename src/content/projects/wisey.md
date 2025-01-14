@@ -1,6 +1,6 @@
 ---
 title: "Wisey I: Personal Assistant Robot"
-summary: "This paper presents a novel framework for learning robust bipedal walking by combining a data-driven state representation with a Reinforcement Learning (RL) based locomotion policy."
+summary: "This work proposes the development of a personal assistant robot aimed at providing support for the care of elderly people whith motor disability in the home environment."
 image: "/Wisey/wisey-oblique.webp"
 category: "Robotics"
 ---
